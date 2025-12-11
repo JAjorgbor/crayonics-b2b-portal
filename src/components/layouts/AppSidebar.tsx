@@ -19,6 +19,7 @@ import {
   NotebookTabs,
   Settings,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const topItems = [
   {
@@ -83,10 +84,10 @@ function AppSidebar() {
               {topItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -99,10 +100,10 @@ function AppSidebar() {
           {bottomItems.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>
+                <Link to={item.url}>
                   <item.icon />
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
@@ -111,10 +112,10 @@ function AppSidebar() {
               asChild
               className="hover:bg-destructive/10 text-destructive!"
             >
-              <span className="flex gap-4 items-center cursor-pointer">
+              <Link to="/" className="flex gap-4 items-center cursor-pointer">
                 <LogOut />
                 <span>Sign Out</span>
-              </span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

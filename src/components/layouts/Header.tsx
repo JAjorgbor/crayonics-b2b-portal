@@ -5,7 +5,7 @@ const Header = () => {
   const { toggleSidebar } = useSidebar();
   return (
     <header className="max-w-7xl mx-auto bg-white">
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-2 px-7">
         <div className="flex gap-2 items-center w-1/4">
           <button onClick={() => toggleSidebar()} className="cursor-pointer">
             <Menu size={20} />
