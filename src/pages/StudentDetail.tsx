@@ -10,11 +10,8 @@ import {
   Lightbulb,
   Upload,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 export default function StudentDetail() {
-  const navigate = useNavigate();
-
   // Mock student data
   const student = {
     name: "Alex Chen",
