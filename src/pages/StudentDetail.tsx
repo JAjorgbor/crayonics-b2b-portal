@@ -1,25 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import {
-  ArrowLeft,
-  CheckCircle2,
   AlertCircle,
-  Clock,
-  Upload,
-  UserCheck,
-  XCircle,
-  FileText,
-  Lightbulb,
-  Layout,
-  Monitor,
-  Send,
-  Loader2,
+  CheckCircle2,
   ExternalLink,
+  Layout,
+  Lightbulb,
+  Upload,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function StudentDetail() {
   const navigate = useNavigate();
@@ -246,7 +237,9 @@ export default function StudentDetail() {
               </p>
               <p className="text-2xl font-bold text-slate-900">
                 10
-                <span className="text-sm font-normal text-slate-500">hrs</span>{" "}
+                <span className="text-sm font-normal text-slate-500">
+                  hrs
+                </span>{" "}
                 22
                 <span className="text-sm font-normal text-slate-500">mins</span>
               </p>

@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/sidebar";
 import {
   Brain,
-  ChartBar,
   ChartColumnIncreasing,
   GraduationCapIcon,
   Headset,
