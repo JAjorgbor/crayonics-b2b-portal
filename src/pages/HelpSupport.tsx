@@ -16,14 +16,14 @@ import { Mail, MessageCircle, FileText, Info } from "lucide-react";
 
 export default function HelpSupportPage() {
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-8 space-y-8 animate-in fade-in duration-500">
+    <div className="max-w-4xl @container mx-auto p-4 md:p-8 space-y-8 animate-in fade-in duration-500">
       <h1 className="text-3xl font-bold tracking-tight text-indigo-600">
         Help & Support
       </h1>
 
       {/* Support Options */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="md:col-span-2">
+      <div className="grid grid-cols-1 @lg:grid-cols-3 gap-6">
+        <Card className="@lg:col-span-2">
           <CardHeader>
             <CardTitle>Contact Support</CardTitle>
             <CardDescription>
@@ -35,11 +35,11 @@ export default function HelpSupportPage() {
               <Mail className="h-5 w-5 text-indigo-600" />
               <span>support@crayonics.ai</span>
             </div>
-            <div className="flex gap-4">
-              <Button className="bg-indigo-600 hover:bg-indigo-700">
+            <div className="flex gap-4 flex-wrap">
+              <Button className="bg-indigo-600 hover:bg-indigo-700 flex-1">
                 <MessageCircle className="mr-2 h-4 w-4" /> Submit a Request
               </Button>
-              <Button variant="outline">
+              <Button variant="outline" className="flex-1">
                 <FileText className="mr-2 h-4 w-4" /> View Documentation
               </Button>
             </div>
