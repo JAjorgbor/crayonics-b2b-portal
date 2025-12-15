@@ -225,8 +225,7 @@ export function StudentRoster() {
       </div>
 
       {/* Table Section */}
-      <div className="rounded-lg border border-blue-200 bg-white shadow-sm overflow-hidden ring-4 ring-blue-50/50">
-        {" "}
+      <div className="rounded-lg border border-blue-200 bg-white shadow-sm overflow-x-auto ring-4 ring-blue-50/50 min-w-full max-w-0">
         {/* Added ring/border to match the blue outline in screenshot */}
         <Table>
           <TableHeader className="bg-indigo-50/50">

@@ -1,81 +1,78 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Users, FolderOpen, CheckCircle, Star } from "lucide-react";
 
 export function DashboardHeader() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col space-y-2">
-        <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 bg-indigo-100 rounded-full flex items-center justify-center">
-            <span className="text-indigo-600 font-bold text-xs">SC</span>
-          </div>
-          <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-            Your School Name Here
-          </span>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-indigo-500">
-          AI-Resilience Program Dashboard
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+          Dashboard
         </h1>
-        <p className="text-muted-foreground text-lg">
-          Partner School Admin Dashboard
+        <p className="text-muted-foreground">
+          Welcome back to the Crayonics Partner Portal.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="rounded-xl shadow-sm border-slate-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">
-              Total Enrolled Students
-            </CardTitle>
-            <Users className="h-4 w-4 text-indigo-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-slate-900">50</div>
-            <p className="text-xs text-muted-foreground pt-1">
-              +5% from last month
-            </p>
+        {/* Total Enrolled Students */}
+        <Card className="flex flex-col justify-between p-6 shadow-sm border-slate-100">
+          <CardContent className="p-0 space-y-4">
+            <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center">
+              <Users className="h-5 w-5 text-purple-600" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                Total Enrolled Students
+              </p>
+              <div className="text-4xl font-bold text-indigo-600 mt-2">50</div>
+            </div>
           </CardContent>
         </Card>
-        <Card className="rounded-xl shadow-sm border-slate-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">
-              Active Projects
-            </CardTitle>
-            <FolderOpen className="h-4 w-4 text-indigo-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-slate-900">3</div>
-            <p className="text-xs text-muted-foreground pt-1">
-              All on schedule
-            </p>
+
+        {/* Active Projects */}
+        <Card className="flex flex-col justify-between p-6 shadow-sm border-slate-100">
+          <CardContent className="p-0 space-y-4">
+            <div className="h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <FolderOpen className="h-5 w-5 text-green-600" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                Active Projects
+              </p>
+              <div className="text-4xl font-bold text-indigo-600 mt-2">3</div>
+            </div>
           </CardContent>
         </Card>
-        <Card className="rounded-xl shadow-sm border-slate-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">
-              Avg. Completion Rate
-            </CardTitle>
-            <CheckCircle className="h-4 w-4 text-indigo-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-slate-900">87%</div>
-            <p className="text-xs text-muted-foreground pt-1">
-              +2% from last week
-            </p>
+
+        {/* Avg Completion Rate */}
+        <Card className="flex flex-col justify-between p-6 shadow-sm border-slate-100">
+          <CardContent className="p-0 space-y-4">
+            <div className="h-10 w-10 bg-orange-100 rounded-lg flex items-center justify-center">
+              <CheckCircle className="h-5 w-5 text-orange-600" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                Average Completion Rate
+              </p>
+              <div className="text-4xl font-bold text-indigo-600 mt-2">87%</div>
+            </div>
           </CardContent>
         </Card>
-        <Card className="rounded-xl shadow-sm border-slate-200">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">
-              Avg. ARS Score
-            </CardTitle>
-            <Star className="h-4 w-4 text-indigo-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-slate-900">73/100</div>
-            <p className="text-xs text-muted-foreground pt-1">
-              Top 10% of schools
-            </p>
+
+        {/* Avg ARS Score */}
+        <Card className="flex flex-col justify-between p-6 shadow-sm border-slate-100">
+          <CardContent className="p-0 space-y-4">
+            <div className="h-10 w-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+              <Star className="h-5 w-5 text-cyan-600" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                Avg. ARS Score
+              </p>
+              <div className="text-4xl font-bold text-indigo-600 mt-2">
+                73/100
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

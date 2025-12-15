@@ -322,7 +322,7 @@ export default function ProjectDetail() {
           </Card>
 
           {/* AI Feedback Snippets */}
-          <Card className="bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
+          <Card className="bg-linear-to-br from-indigo-50 to-white border-indigo-100">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-indigo-800">
                 <Brain className="h-5 w-5" /> AI Insights

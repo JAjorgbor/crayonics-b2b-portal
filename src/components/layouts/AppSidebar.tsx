@@ -66,7 +66,10 @@ function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem className="flex gap-2 items-center">
                 <SidebarMenuButton>
-                  <Brain className="text-indigo-600" size={25} />
+                  <Brain
+                    className="text-indigo-600 transform scale-150"
+                    size={25}
+                  />
                   <h2 className="font-bold text-lg  text-indigo-600">
                     Crayonics Academy
                   </h2>
