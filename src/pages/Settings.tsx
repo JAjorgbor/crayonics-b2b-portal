@@ -14,8 +14,8 @@ import { Upload, Save, Lock, Download, Trash2, LogOut } from "lucide-react";
 
 export default function SettingsPage() {
   return (
-    <div className="max-w-4xl mx-auto p-8 space-y-8 animate-in fade-in duration-500">
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+    <div className="max-w-4xl mx-auto p-4 md:p-8 space-y-8 animate-in fade-in duration-500">
+      <h1 className="text-3xl font-bold tracking-tight text-indigo-600">
         Settings
       </h1>
 
@@ -111,7 +111,10 @@ export default function SettingsPage() {
                 Receive a weekly digest of student progress.
               </p>
             </div>
-            <Switch defaultChecked />
+            <Switch
+              defaultChecked
+              className="data-[state=checked]:bg-indigo-500"
+            />
           </div>
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
@@ -120,7 +123,10 @@ export default function SettingsPage() {
                 Get notified immediately when a student falls behind.
               </p>
             </div>
-            <Switch defaultChecked />
+            <Switch
+              className="data-[state=checked]:bg-indigo-500"
+              defaultChecked
+            />
           </div>
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
@@ -129,7 +135,7 @@ export default function SettingsPage() {
                 Notifications when new projects are added to the library.
               </p>
             </div>
-            <Switch />
+            <Switch className="data-[state=checked]:bg-indigo-500" />
           </div>
         </CardContent>
       </Card>
@@ -152,7 +158,7 @@ export default function SettingsPage() {
           </Button>
         </CardContent>
         <CardFooter className="border-t pt-6 bg-slate-50/50">
-          <div className="w-full flex items-center justify-between">
+          <div className="w-full flex flex-wrap gap-5 items-center justify-between">
             <span className="text-sm text-muted-foreground">
               Permanently delete this account and all data.
             </span>

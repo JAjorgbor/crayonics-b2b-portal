@@ -7,6 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Brain,
@@ -18,6 +19,7 @@ import {
   NotebookTabs,
   Settings,
 } from "lucide-react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const topItems = [
@@ -57,7 +59,11 @@ const bottomItems = [
 
 function AppSidebar() {
   const location = useLocation();
+  const { setOpenMobile } = useSidebar();
 
+  useEffect(() => {
+    setOpenMobile(false);
+  }, [location.pathname]);
   return (
     <Sidebar collapsible="icon">
       <SidebarContent className="bg-white border-r-0">
@@ -80,6 +86,7 @@ function AppSidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={location.pathname.startsWith(item.url)}
+                    className="data-[active=true]:text-indigo-500"
                   >
                     <Link to={item.url}>
                       <item.icon />
@@ -99,6 +106,7 @@ function AppSidebar() {
               <SidebarMenuButton
                 asChild
                 isActive={location.pathname.startsWith(item.url)}
+                className="data-[active=true]:text-indigo-500"
               >
                 <Link to={item.url}>
                   <item.icon />

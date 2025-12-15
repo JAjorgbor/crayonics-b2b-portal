@@ -61,10 +61,10 @@ const topPerformers = [
 
 export default function AnalyticsPage() {
   return (
-    <div className="max-w-7xl mx-auto p-8 space-y-8 animate-in fade-in duration-500">
+    <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className="text-3xl font-bold tracking-tight text-indigo-600">
             Cohort Analytics
           </h1>
           <p className="text-muted-foreground mt-1">
