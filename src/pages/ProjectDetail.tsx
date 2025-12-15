@@ -1,18 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  ArrowLeft,
-  Clock,
-  CheckCircle2,
-  BarChart3,
-  Unlock,
-  MoreVertical,
-  Download,
-  Copy,
-  Archive,
-  Brain,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -20,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -28,9 +17,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Archive,
+  ArrowLeft,
+  BarChart3,
+  Brain,
+  CheckCircle2,
+  Clock,
+  Copy,
+  Download,
+  MoreVertical,
+  Unlock,
+} from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ProjectDetail() {
   const navigate = useNavigate();
