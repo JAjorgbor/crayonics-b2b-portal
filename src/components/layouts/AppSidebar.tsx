@@ -18,7 +18,7 @@ import {
   NotebookTabs,
   Settings,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const topItems = [
   {
@@ -56,6 +56,8 @@ const bottomItems = [
 ];
 
 function AppSidebar() {
+  const location = useLocation();
+
   return (
     <Sidebar collapsible="icon">
       <SidebarContent className="bg-white border-r-0">
@@ -72,7 +74,10 @@ function AppSidebar() {
               </SidebarMenuItem>
               {topItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={location.pathname.startsWith(item.url)}
+                  >
                     <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -88,7 +93,10 @@ function AppSidebar() {
         <SidebarMenu>
           {bottomItems.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton
+                asChild
+                isActive={location.pathname.startsWith(item.url)}
+              >
                 <Link to={item.url}>
                   <item.icon />
                   <span>{item.title}</span>

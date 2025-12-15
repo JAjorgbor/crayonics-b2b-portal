@@ -170,7 +170,7 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Top Performers List */}
-        <Card className="col-span-1">
+        <Card className="col-span-2 md:col-span-1">
           <CardHeader>
             <CardTitle>Top Performers</CardTitle>
             <CardDescription>Students with ARS above 85</CardDescription>
