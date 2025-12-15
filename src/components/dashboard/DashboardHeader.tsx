@@ -13,7 +13,7 @@ export function DashboardHeader() {
             Your School Name Here
           </span>
         </div>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+        <h1 className="text-3xl font-bold tracking-tight text-indigo-500">
           AI-Resilience Program Dashboard
         </h1>
         <p className="text-muted-foreground text-lg">

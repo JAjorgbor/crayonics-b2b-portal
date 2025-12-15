@@ -2,337 +2,314 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ArrowLeft,
-  Clock,
   CheckCircle2,
-  Github,
+  AlertCircle,
+  Clock,
+  Upload,
+  UserCheck,
+  XCircle,
+  FileText,
+  Lightbulb,
+  Layout,
+  Monitor,
+  Send,
+  Loader2,
   ExternalLink,
-  MessageSquare,
 } from "lucide-react";
 
 export default function StudentDetail() {
   const navigate = useNavigate();
 
-  // Mock student data - in a real app fetch by ID
+  // Mock student data
   const student = {
-    name: "Alice Johnson",
-    status: "Active",
-    cohort: "Cohort 3",
-    avatarSeed: "Alice Johnson",
+    name: "Alex Chen",
+    status: "At Risk",
+    avatarSeed: "Alex Chen",
+    progress: 68,
+    arsScore: "71",
+    lastActive: "2 Days ago",
+    currentProject: "Copilot task",
   };
+
+  const timelineSteps = [
+    {
+      label: "Research",
+      status: "completed",
+      icon: CheckCircle2,
+      color: "text-green-500",
+      barColor: "bg-green-600",
+      bgColor: "bg-green-50",
+    },
+    {
+      label: "Ideation",
+      status: "in-progress",
+      icon: Lightbulb,
+      color: "text-orange-500",
+      barColor: "bg-orange-400",
+      bgColor: "bg-orange-50",
+    },
+    {
+      label: "Wireframing",
+      status: "delayed",
+      icon: AlertCircle,
+      color: "text-red-500",
+      barColor: "bg-red-500",
+      bgColor: "bg-red-50",
+    },
+    {
+      label: "Prototyping",
+      status: "pending",
+      icon: Layout,
+      color: "text-slate-400",
+      barColor: "bg-slate-200",
+      bgColor: "bg-slate-50",
+    },
+    {
+      label: "Submission",
+      status: "pending",
+      icon: Upload,
+      color: "text-slate-400",
+      barColor: "bg-slate-200",
+      bgColor: "bg-slate-50",
+    },
+  ];
 
   return (
     <div className="max-w-7xl mx-auto p-8 space-y-8 animate-in fade-in duration-500">
-      <Button
-        variant="ghost"
-        className="text-muted-foreground pl-0 hover:text-indigo-600 hover:bg-transparent"
-        onClick={() => navigate(-1)}
-      >
-        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Students
-      </Button>
-
       {/* Header Profile Section */}
-      <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between border-b pb-8">
+      <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
         <div className="flex items-center gap-6">
           <Avatar className="h-24 w-24 border-4 border-white shadow-sm">
             <AvatarImage
               src={`https://api.dicebear.com/7.x/notionists/svg?seed=${student.avatarSeed}`}
             />
-            <AvatarFallback>AJ</AvatarFallback>
+            <AvatarFallback>AC</AvatarFallback>
           </Avatar>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 flex items-center gap-3">
-              {student.name}
-              <Badge className="bg-green-100 text-green-700 hover:bg-green-200 border-green-200">
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                {student.name}
+              </h1>
+              <Badge className="bg-orange-100 text-orange-700 hover:bg-orange-200 border-none px-3 py-1 text-sm font-medium">
                 {student.status}
               </Badge>
-            </h1>
-            <p className="text-lg text-muted-foreground mt-1">
-              AI Resilience Program • {student.cohort}
-            </p>
-            <div className="flex gap-4 mt-3 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <Clock className="h-4 w-4" /> 12.5 hrs active
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-4 w-4" /> 14/20 modules
-              </span>
             </div>
           </div>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline">View Portfolio</Button>
-          <Button className="bg-indigo-600 hover:bg-indigo-700">
-            Message Student
+          <Button
+            variant="outline"
+            className="bg-gray-100/50 hover:bg-gray-200/50 border-transparent text-slate-600"
+          >
+            Send Message
+          </Button>
+          <Button
+            variant="outline"
+            className="bg-gray-100/50 hover:bg-gray-200/50 border-transparent text-slate-600 gap-2"
+          >
+            View Activity Log
+            <ExternalLink className="h-4 w-4" />
           </Button>
         </div>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-3">
-        {/* Sidebar / Stats */}
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Overall Performance</CardTitle>
-              <CardDescription>ARS Score Breakdown</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <div className="text-center py-4">
-                <span className="text-6xl font-bold text-indigo-600">88</span>
-                <span className="text-muted-foreground text-sm uppercase tracking-wide block mt-2">
-                  Total Score
+      {/* Top Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <Card className="border-none shadow-sm bg-white">
+          <CardContent className="pt-6">
+            <p className="text-sm font-medium text-slate-500 mb-2">Progress</p>
+            <div className="flex items-center gap-4">
+              <span className="text-3xl font-bold text-slate-900">
+                {student.progress}%
+              </span>
+              <div className="h-2 flex-1 bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-full bg-green-700 w-[68%] rounded-full" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-none shadow-sm bg-white">
+          <CardContent className="pt-6">
+            <p className="text-sm font-medium text-slate-500 mb-2">ARS Score</p>
+            <div className="flex items-end gap-1">
+              <span className="text-3xl font-bold text-slate-900">
+                {student.arsScore}
+              </span>
+              <span className="text-xl text-slate-400 mb-1">/100</span>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-none shadow-sm bg-white">
+          <CardContent className="pt-6">
+            <p className="text-sm font-medium text-slate-500 mb-2">
+              Last active
+            </p>
+            <span className="text-3xl font-bold text-slate-900">
+              {student.lastActive}
+            </span>
+          </CardContent>
+        </Card>
+        <Card className="border-none shadow-sm bg-white">
+          <CardContent className="pt-6">
+            <p className="text-sm font-medium text-slate-500 mb-2">
+              Current Project
+            </p>
+            <span className="text-2xl font-bold text-slate-900">
+              {student.currentProject}
+            </span>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Project Timeline */}
+      <div>
+        <h2 className="text-lg font-semibold mb-4 text-slate-800">
+          Project Timeline
+        </h2>
+        <div className="bg-white rounded-xl p-8 shadow-sm border border-slate-100">
+          <div className="flex flex-col md:flex-row justify-between gap-4 mb-8">
+            {timelineSteps.map((step, index) => (
+              <div key={index} className="flex-1">
+                <div
+                  className={`flex items-center gap-2 mb-3 p-3 rounded-lg w-fit ${step.bgColor}`}
+                >
+                  <step.icon className={`h-5 w-5 ${step.color}`} />
+                  <span className="font-medium text-slate-700">
+                    {step.label}
+                  </span>
+                </div>
+                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${step.barColor} ${
+                      step.status === "completed"
+                        ? "w-full"
+                        : step.status === "in-progress"
+                        ? "w-1/2"
+                        : step.status === "delayed"
+                        ? "w-1/3"
+                        : "w-0"
+                    }`}
+                  />
+                </div>
+                <div className="mt-2">
+                  {step.status === "completed" && (
+                    <span className="text-xs text-slate-500 font-medium">
+                      Completed
+                    </span>
+                  )}
+                  {step.status === "in-progress" && (
+                    <span className="text-xs text-orange-500 font-medium">
+                      In progress
+                    </span>
+                  )}
+                  {step.status === "delayed" && (
+                    <span className="text-xs text-red-500 font-medium">
+                      Delayed
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-between items-center text-sm text-slate-500 border-t pt-4 mt-4">
+            <span>Time spent: 7hrs 45mins</span>
+            <span>Needs to spend more time in ideation</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Engagements Stats */}
+        <div>
+          <h2 className="text-lg font-semibold mb-4 text-slate-800">
+            Engagements Stats
+          </h2>
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 grid grid-cols-3 gap-4">
+            <div className="text-center p-4 bg-slate-50/50 rounded-lg">
+              <p className="text-sm font-medium text-slate-600 mb-2">
+                Login Streak
+              </p>
+              <p className="text-2xl font-bold text-slate-900">
+                4
+                <span className="text-sm font-normal text-slate-500">Days</span>
+              </p>
+            </div>
+            <div className="text-center p-4 bg-slate-50/50 rounded-lg border-l border-r border-slate-100">
+              <p className="text-sm font-medium text-slate-600 mb-2">
+                Total Hours
+              </p>
+              <p className="text-2xl font-bold text-slate-900">
+                10
+                <span className="text-sm font-normal text-slate-500">hrs</span>{" "}
+                22
+                <span className="text-sm font-normal text-slate-500">mins</span>
+              </p>
+            </div>
+            <div className="text-center p-4 bg-slate-50/50 rounded-lg">
+              <p className="text-sm font-medium text-slate-600 mb-2">
+                Completion Rate
+              </p>
+              <p className="text-3xl font-bold text-slate-900">72%</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Activities */}
+        <div>
+          <h2 className="text-lg font-semibold mb-4 text-slate-800">
+            Recent Activities
+          </h2>
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-indigo-50 rounded-full">
+                  <Upload className="h-4 w-4 text-indigo-600" />
+                </div>
+                <span className="text-sm font-medium text-slate-700">
+                  Uploaded wireframes
                 </span>
               </div>
-              <div className="space-y-3">
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="font-medium">Technical Depth</span>
-                    <span>85/100</span>
-                  </div>
-                  <Progress value={85} className="h-2 fill-indigo-600" />
+              <span className="text-xs text-slate-400">1 hours ago</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-green-50 rounded-full">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
                 </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="font-medium">AI Collaboration</span>
-                    <span>92/100</span>
-                  </div>
-                  <Progress value={92} className="h-2 fill-indigo-600" />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="font-medium">Problem Diagnosis</span>
-                    <span>78/100</span>
-                  </div>
-                  <Progress value={78} className="h-2 fill-indigo-600" />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="font-medium">Communication</span>
-                    <span>88/100</span>
-                  </div>
-                  <Progress value={88} className="h-2 fill-indigo-600" />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="font-medium">Ethical Judgment</span>
-                    <span>74/100</span>
-                  </div>
-                  <Progress value={74} className="h-2 fill-indigo-600" />
-                </div>
+                <span className="text-sm font-medium text-slate-700">
+                  Completed onboarding
+                </span>
               </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Portfolio Links</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <a
-                href="#"
-                className="flex items-center justify-between p-3 rounded-md hover:bg-slate-50 border transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <Github className="h-5 w-5 text-slate-700" />
-                  <span className="font-medium text-sm">GitHub Profile</span>
+              <span className="text-xs text-slate-400">1 hours ago</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-red-50 rounded-full">
+                  <AlertCircle className="h-4 w-4 text-red-600" />
                 </div>
-                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-indigo-600" />
-              </a>
-              <a
-                href="#"
-                className="flex items-center justify-between p-3 rounded-md hover:bg-slate-50 border transition-colors group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-5 w-5 rounded-full bg-indigo-100 flex items-center justify-center text-[10px] font-bold text-indigo-700">
-                    P
-                  </div>
-                  <span className="font-medium text-sm">Personal Website</span>
-                </div>
-                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-indigo-600" />
-              </a>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Main Content Area */}
-        <div className="md:col-span-2">
-          <Tabs defaultValue="timeline" className="w-full">
-            <TabsList className="w-full justify-start mb-6 border-b rounded-none h-auto p-0 bg-transparent gap-6">
-              <TabsTrigger
-                value="timeline"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-indigo-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3 font-medium"
-              >
-                Project Timeline
-              </TabsTrigger>
-              <TabsTrigger
-                value="feedback"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-indigo-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3 font-medium"
-              >
-                AI Feedback History
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="timeline" className="space-y-6">
-              <div className="relative pl-8 border-l border-slate-200 space-y-8">
-                {/* Timeline Item 1 */}
-                <div className="relative">
-                  <div className="absolute -left-[37px] top-1">
-                    <div className="h-4 w-4 rounded-full bg-yellow-100 border-2 border-yellow-500"></div>
-                  </div>
-                  <div className="bg-white border rounded-lg p-5 shadow-sm">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-900">
-                          AI Ethics Paper
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          Module 3 • Research & Analysis
-                        </p>
-                      </div>
-                      <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
-                        In Progress
-                      </Badge>
-                    </div>
-                    <p className="text-slate-600 mb-4 line-clamp-2">
-                      Exploring algorithmic bias in healthcare recruiting
-                      systems.
-                    </p>
-                    <div className="flex items-center gap-4 text-sm text-slate-500">
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" /> Started 2 days ago
-                      </span>
-                      <span className="flex items-center gap-1 font-medium text-indigo-600">
-                        Due Dec 15
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Timeline Item 2 */}
-                <div className="relative">
-                  <div className="absolute -left-[37px] top-1">
-                    <div className="h-4 w-4 rounded-full bg-green-100 border-2 border-green-500"></div>
-                  </div>
-                  <div className="bg-white border rounded-lg p-5 shadow-sm opacity-90">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-900">
-                          React Portfolio
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          Module 2 • Frontend Development
-                        </p>
-                      </div>
-                      <Badge className="bg-green-100 text-green-800 border-green-200">
-                        Completed
-                      </Badge>
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 mt-3 p-3 bg-slate-50 rounded-md border border-slate-100">
-                      <div className="text-center">
-                        <span className="block text-xl font-bold text-slate-900">
-                          95
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          Score
-                        </span>
-                      </div>
-                      <div className="text-center border-l border-slate-200">
-                        <span className="block text-xl font-bold text-slate-900">
-                          A
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          Grade
-                        </span>
-                      </div>
-                      <div className="text-center border-l border-slate-200">
-                        <span className="block text-xl font-bold text-slate-900">
-                          4h
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          Time
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Timeline Item 3 */}
-                <div className="relative">
-                  <div className="absolute -left-[37px] top-1">
-                    <div className="h-4 w-4 rounded-full bg-slate-100 border-2 border-slate-300"></div>
-                  </div>
-                  <div className="bg-white border rounded-lg p-5 shadow-sm opacity-60">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-900">
-                          Capstone Project
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          Module 4 • Final Assessment
-                        </p>
-                      </div>
-                      <Badge variant="secondary">Locked</Badge>
-                    </div>
-                    <p className="text-slate-500 text-sm">
-                      Prerequisites not met yet.
-                    </p>
-                  </div>
-                </div>
+                <span className="text-sm font-medium text-slate-700">
+                  Missed daily login
+                </span>
               </div>
-            </TabsContent>
-
-            <TabsContent value="feedback" className="space-y-4">
-              {/* Feedback Items */}
-              {[1, 2, 3].map((i) => (
-                <Card
-                  key={i}
-                  className="hover:border-indigo-200 transition-colors"
-                >
-                  <CardContent className="p-5 flex gap-4">
-                    <div className="mt-1">
-                      <div className="h-10 w-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center">
-                        <MessageSquare className="h-5 w-5 text-indigo-600" />
-                      </div>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="flex justify-between items-center w-full">
-                        <h4 className="font-semibold text-slate-900">
-                          Feedback on "Ethics Paper"
-                        </h4>
-                        <span className="text-xs text-muted-foreground">
-                          2 days ago
-                        </span>
-                      </div>
-                      <p className="text-slate-600 text-sm leading-relaxed">
-                        "Looking good overall. I suggest diving deeper into the
-                        nuances of data collection methods. Have you considered
-                        looking at..."
-                      </p>
-                      <div className="pt-2">
-                        <Badge
-                          variant="outline"
-                          className="text-indigo-600 border-indigo-200 bg-indigo-50"
-                        >
-                          AI Critique
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-          </Tabs>
+              <span className="text-xs text-slate-400">3 Days ago</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Alert Banner */}
+      <div className="bg-red-50 border border-red-100 rounded-lg p-4 flex items-center gap-3 text-red-800">
+        <AlertCircle className="h-5 w-5 text-red-600" />
+        <span className="font-medium">
+          Low ARS Score and project delays detected. needs intervention to get
+          back on track
+        </span>
       </div>
     </div>
   );

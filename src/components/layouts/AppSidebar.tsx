@@ -34,7 +34,7 @@ const topItems = [
   },
   {
     title: "Projects",
-    url: "#",
+    url: "/projects",
     icon: NotebookTabs,
   },
   {
@@ -42,26 +42,16 @@ const topItems = [
     url: "/analytics",
     icon: ChartColumnIncreasing,
   },
-  {
-    title: "Reports",
-    url: "/reports",
-    icon: ChartBar,
-  },
-  {
-    title: "Integration",
-    url: "/integration",
-    icon: Settings,
-  },
 ];
 const bottomItems = [
   {
     title: "Settings",
-    url: "#",
+    url: "/settings",
     icon: Settings,
   },
   {
     title: "Help & Support",
-    url: "#",
+    url: "/help",
     icon: Headset,
   },
 ];
