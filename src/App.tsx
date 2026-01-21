@@ -9,6 +9,10 @@ import ProjectDetail from "@/pages/ProjectDetail";
 import AnalyticsPage from "@/pages/Analytics";
 import SettingsPage from "@/pages/Settings";
 import HelpSupportPage from "@/pages/HelpSupport";
+import UserManagement from "@/pages/admin/UserManagement";
+import SystemConfig from "@/pages/admin/SystemConfig";
+import ReportsPage from "@/pages/admin/Reports";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 function App() {
   return (
@@ -24,6 +28,21 @@ function App() {
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/help" element={<HelpSupportPage />} />
+
+        {/* Administration Section */}
+        <Route
+          element={<ProtectedRoute requiredPermission="view:admin_dashboard" />}
+        >
+          <Route path="/admin/users" element={<UserManagement />} />
+        </Route>
+        <Route element={<ProtectedRoute requiredPermission="manage:system" />}>
+          <Route path="/admin/system" element={<SystemConfig />} />
+        </Route>
+        <Route
+          element={<ProtectedRoute requiredPermission="view:reports_tier1" />}
+        >
+          <Route path="/reports" element={<ReportsPage />} />
+        </Route>
       </Route>
     </Routes>
   );

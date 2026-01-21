@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,10 +16,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login, isLoading: authLoading, user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  // Temporary for demo: Allow role selection
+  const [selectedRole, setSelectedRole] = useState("dept_admin");
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,15 +41,16 @@ export default function LoginPage() {
 
     setLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Pass the selected role for the demo to work with different personas
+      await login(email, selectedRole as any);
+      // Navigation effectively handled by useEffect or here
+      navigate("/dashboard");
+    } catch (err) {
+      setError("Login failed");
+    } finally {
       setLoading(false);
-      if (email === "test@example.com" && password === "password") {
-        navigate("/dashboard");
-      } else {
-        setError("Invalid email or password.");
-      }
-    }, 1500);
+    }
   };
 
   return (
@@ -118,6 +129,27 @@ export default function LoginPage() {
                     {error}
                   </div>
                 )}
+
+                {/* Role Selector for Demo */}
+                <div className="space-y-2">
+                  <Label className="text-slate-700 dark:text-slate-300">
+                    Select Role (Demo Only)
+                  </Label>
+                  <select
+                    className="w-full h-11 px-3 rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800"
+                    value={selectedRole}
+                    onChange={(e) => setSelectedRole(e.target.value)}
+                  >
+                    <option value="super_admin">Super Admin</option>
+                    <option value="dept_admin">Department Admin</option>
+                    <option value="program_coordinator">
+                      Program Coordinator
+                    </option>
+                    <option value="faculty">Faculty</option>
+                    <option value="career_services">Career Services</option>
+                    <option value="it_admin">IT Admin</option>
+                  </select>
+                </div>
 
                 <Button
                   type="submit"

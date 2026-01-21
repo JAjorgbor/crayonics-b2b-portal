@@ -18,9 +18,13 @@ import {
   LogOut,
   NotebookTabs,
   Settings,
+  Users,
+  Settings2,
+  BarChart3,
 } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
 const topItems = [
   {
@@ -60,6 +64,7 @@ const bottomItems = [
 function AppSidebar() {
   const location = useLocation();
   const { setOpenMobile } = useSidebar();
+  const { hasPermission } = useAuth();
 
   useEffect(() => {
     setOpenMobile(false);
@@ -98,6 +103,58 @@ function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* Administration Group */}
+        {hasPermission("view:admin_dashboard") && (
+          <SidebarGroup>
+            <div className="px-2 py-2">
+              <h3 className="mb-2 px-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                Administration
+              </h3>
+              <SidebarMenu>
+                {hasPermission("manage:users") && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={location.pathname.startsWith("/admin/users")}
+                    >
+                      <Link to="/admin/users">
+                        <Users />
+                        <span>User Management</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+                {hasPermission("view:reports_tier1") && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={location.pathname.startsWith("/reports")}
+                    >
+                      <Link to="/reports">
+                        <BarChart3 />
+                        <span>Reports & Analytics</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+                {hasPermission("manage:system") && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={location.pathname.startsWith("/admin/system")}
+                    >
+                      <Link to="/admin/system">
+                        <Settings2 />
+                        <span>System Config</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+              </SidebarMenu>
+            </div>
+          </SidebarGroup>
+        )}
       </SidebarContent>
       <SidebarFooter className="bg-white">
         <SidebarMenu>
@@ -115,17 +172,6 @@ function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="hover:bg-destructive/10 text-destructive!"
-            >
-              <Link to="/" className="flex gap-4 items-center cursor-pointer">
-                <LogOut />
-                <span>Sign Out</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
