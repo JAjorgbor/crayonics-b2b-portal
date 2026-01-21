@@ -11,6 +11,7 @@ export const PERMISSIONS: Record<Role, Permission[]> = {
     "view:reports_tier2",
     "manage:students",
     "manage:projects",
+    "simulate:student_view",
   ],
   dept_admin: [
     "view:analytics",
@@ -20,22 +21,26 @@ export const PERMISSIONS: Record<Role, Permission[]> = {
     "view:reports_tier2",
     "manage:students",
     "manage:projects",
+    "simulate:student_view",
   ],
   program_coordinator: [
     "view:analytics",
     "manage:students",
     "manage:projects",
     "view:reports_tier1",
+    "simulate:student_view",
   ],
   faculty: [
     "manage:students", // Scoped to courses
     "manage:projects",
     "view:reports_tier1", // limited
+    "simulate:student_view",
   ],
   career_services: [
     "view:analytics",
     "view:reports_tier1",
     "view:reports_tier2",
+    "simulate:student_view",
   ],
   it_admin: ["view:admin_dashboard", "manage:system", "manage:users"],
   read_only_admin: [

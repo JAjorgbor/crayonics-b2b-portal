@@ -115,11 +115,11 @@ function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       asChild
-                      isActive={location.pathname.startsWith("/admin/users")}
+                      isActive={location.pathname.startsWith("/admin/staff")}
                     >
-                      <Link to="/admin/users">
+                      <Link to="/admin/staff">
                         <Users />
-                        <span>User Management</span>
+                        <span>Staff Management</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Search, Filter, Clock, Users, ArrowRight } from "lucide-react";
+import PermissionGate from "@/components/auth/PermissionGate";
 
 // Mock Data
 const PROJECTS = [
@@ -88,7 +89,7 @@ export default function ProjectsPage() {
     (p) =>
       p.title.toLowerCase().includes(search.toLowerCase()) &&
       (filterType === "all" ||
-        p.type.toLowerCase() === filterType.toLowerCase())
+        p.type.toLowerCase() === filterType.toLowerCase()),
   );
 
   const getDifficultyColor = (diff: string) => {
@@ -155,6 +156,15 @@ export default function ProjectsPage() {
               <SelectItem value="security">Security</SelectItem>
             </SelectContent>
           </Select>
+          <PermissionGate permission="simulate:student_view">
+            <Button
+              variant="outline"
+              className="hidden md:flex border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+              onClick={() => navigate("/simulate/projects")}
+            >
+              View Student POV
+            </Button>
+          </PermissionGate>
         </div>
       </div>
 

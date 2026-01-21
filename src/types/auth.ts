@@ -16,7 +16,8 @@ export type Permission =
   | "view:reports_tier1"
   | "view:reports_tier2"
   | "manage:students"
-  | "manage:projects";
+  | "manage:projects"
+  | "simulate:student_view";
 
 export interface User {
   id: string;

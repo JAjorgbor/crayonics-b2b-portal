@@ -9,10 +9,11 @@ import ProjectDetail from "@/pages/ProjectDetail";
 import AnalyticsPage from "@/pages/Analytics";
 import SettingsPage from "@/pages/Settings";
 import HelpSupportPage from "@/pages/HelpSupport";
-import UserManagement from "@/pages/admin/UserManagement";
+import StaffManagement from "@/pages/admin/StaffManagement";
 import SystemConfig from "@/pages/admin/SystemConfig";
 import ReportsPage from "@/pages/admin/Reports";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import StudentProjectsGallery from "@/pages/simulation/StudentProjectsGallery";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         <Route
           element={<ProtectedRoute requiredPermission="view:admin_dashboard" />}
         >
-          <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/staff" element={<StaffManagement />} />
         </Route>
         <Route element={<ProtectedRoute requiredPermission="manage:system" />}>
           <Route path="/admin/system" element={<SystemConfig />} />
@@ -42,6 +43,17 @@ function App() {
           element={<ProtectedRoute requiredPermission="view:reports_tier1" />}
         >
           <Route path="/reports" element={<ReportsPage />} />
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute requiredPermission="simulate:student_view" />
+          }
+        >
+          <Route
+            path="/simulate/projects"
+            element={<StudentProjectsGallery />}
+          />
         </Route>
       </Route>
     </Routes>
