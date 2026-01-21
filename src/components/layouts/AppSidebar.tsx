@@ -9,22 +9,21 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useAuth } from "@/context/AuthContext";
 import {
+  BarChart3,
   Brain,
   ChartColumnIncreasing,
   GraduationCapIcon,
   Headset,
   LayoutDashboard,
-  LogOut,
   NotebookTabs,
   Settings,
-  Users,
   Settings2,
-  BarChart3,
+  Users,
 } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "@/context/AuthContext";
 
 const topItems = [
   {

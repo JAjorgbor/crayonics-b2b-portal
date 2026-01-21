@@ -1,4 +1,20 @@
-import { useState } from "react";
+import PermissionGate from "@/components/auth/PermissionGate";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -7,25 +23,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
-import { MoreHorizontal, Search, UserPlus, Filter } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
 import type { Role } from "@/types/auth";
-import PermissionGate from "@/components/auth/PermissionGate";
+import { Filter, MoreHorizontal, Search, UserPlus } from "lucide-react";
+import { useState } from "react";
 
 // Mock Data
 interface UserData {
@@ -82,7 +82,7 @@ const MOCK_USERS_DATA: UserData[] = [
 
 export default function UserManagement() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [users, setUsers] = useState(MOCK_USERS_DATA);
+  const [users] = useState(MOCK_USERS_DATA);
 
   const filteredUsers = users.filter(
     (user) =>

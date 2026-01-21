@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { Permission } from "@/types/auth";
+import type { Permission } from "@/types/auth";
+import type { ReactNode } from "react";
 
 interface PermissionGateProps {
   permission: Permission;

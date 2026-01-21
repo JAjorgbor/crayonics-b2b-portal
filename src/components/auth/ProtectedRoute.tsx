@@ -1,6 +1,6 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { Permission, Role as UserRole } from "@/types/auth"; // Renamed to avoid conflict if I used Role enum
+import type { Permission, Role as UserRole } from "@/types/auth"; // Renamed to avoid conflict if I used Role enum
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 interface ProtectedRouteProps {
   requiredPermission?: Permission;
