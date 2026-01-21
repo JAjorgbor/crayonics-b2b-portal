@@ -59,8 +59,15 @@ export default function LoginPage() {
       <div className="flex w-full flex-col justify-center p-8 md:w-1/2 lg:p-12">
         <div className="mx-auto w-full max-w-sm">
           <div className="mb-8 text-center md:text-left">
+            <div className="flex justify-center md:justify-start mb-6">
+              <img
+                src="/images/logo.jpeg"
+                alt="Logo"
+                className="h-12 w-auto rounded-lg shadow-sm"
+              />
+            </div>
             <h2 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 tracking-wide uppercase">
-              Your School Name Here
+              Crayonics Portal
             </h2>
           </div>
 
@@ -198,7 +205,7 @@ export default function LoginPage() {
         {/* Dashboard Preview / Illustration Placeholder */}
         <div className="relative flex h-full items-center justify-center p-20">
           <div className="relative aspect-square w-full max-w-lg rounded-2xl bg-white/40 p-1 shadow-2xl backdrop-blur-xl border border-white/20 dark:bg-black/20 dark:border-white/10">
-            <div className="absolute inset-4 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 opacity-20"></div>
+            <div className="absolute inset-4 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 opacity-20"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center space-y-4 p-6">
                 <div className="w-16 h-16 bg-white/50 rounded-2xl mx-auto flex items-center justify-center shadow-lg backdrop-blur-sm">
