@@ -6,7 +6,7 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, role: Role) => Promise<void>;
+  login: (email: string) => Promise<void>;
   logout: () => void;
   hasPermission: (permission: any) => boolean;
 }
@@ -19,6 +19,8 @@ const MOCK_USERS: Record<string, Partial<User>> = {
   "dean@school.edu": { name: "Dean Smith", role: "dept_admin" },
   "coord@school.edu": { name: "Prog. Coord", role: "program_coordinator" },
   "faculty@school.edu": { name: "Prof. Doe", role: "faculty" },
+  "career@school.edu": { name: "Career Advisor", role: "career_services" },
+  "it@school.edu": { name: "IT Manager", role: "it_admin" },
 };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -34,18 +36,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, role: Role = "faculty") => {
+  const login = async (email: string) => {
     setIsLoading(true);
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    const mockUser = MOCK_USERS[email] || { name: "Test User", role: role };
+    // Determine role based on email or default to faculty
+    let role: Role = "faculty";
+    let name = "Faculty Member";
+
+    // Check strict mocks
+    if (MOCK_USERS[email]) {
+      role = MOCK_USERS[email].role as Role;
+      name = MOCK_USERS[email].name!;
+    } else {
+      // Heuristic for demo purposes
+      if (email.includes("admin")) {
+        role = "super_admin";
+        name = "Admin User";
+      } else if (email.includes("dean")) {
+        role = "dept_admin";
+        name = "Department Dean";
+      } else if (email.includes("it")) {
+        role = "it_admin";
+        name = "IT Staff";
+      } else if (email.includes("career")) {
+        role = "career_services";
+        name = "Career Counselor";
+      }
+    }
 
     const newUser: User = {
       id: Math.random().toString(36).substr(2, 9),
       email,
-      name: mockUser.name!,
-      role: mockUser.role as Role,
+      name,
+      role,
       avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
     };
 
