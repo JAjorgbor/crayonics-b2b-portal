@@ -21,8 +21,6 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // Temporary for demo: Allow role selection
-  const [selectedRole, setSelectedRole] = useState("dept_admin");
 
   useEffect(() => {
     if (user) {
@@ -43,7 +41,7 @@ export default function LoginPage() {
 
     try {
       // Pass the selected role for the demo to work with different personas
-      await login(email, selectedRole as any);
+      await login(email);
       // Navigation effectively handled by useEffect or here
       navigate("/dashboard");
     } catch (err) {
@@ -137,27 +135,6 @@ export default function LoginPage() {
                   </div>
                 )}
 
-                {/* Role Selector for Demo */}
-                <div className="space-y-2">
-                  <Label className="text-slate-700 dark:text-slate-300">
-                    Select Role (Demo Only)
-                  </Label>
-                  <select
-                    className="w-full h-11 px-3 rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800"
-                    value={selectedRole}
-                    onChange={(e) => setSelectedRole(e.target.value)}
-                  >
-                    <option value="super_admin">Super Admin</option>
-                    <option value="dept_admin">Department Admin</option>
-                    <option value="program_coordinator">
-                      Program Coordinator
-                    </option>
-                    <option value="faculty">Faculty</option>
-                    <option value="career_services">Career Services</option>
-                    <option value="it_admin">IT Admin</option>
-                  </select>
-                </div>
-
                 <Button
                   type="submit"
                   className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-200/50 dark:shadow-indigo-900/50 transition-all duration-300 transform active:scale-95"
@@ -189,7 +166,7 @@ export default function LoginPage() {
                 variant="outline"
                 className="w-full border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               >
-                Request access from TIS
+                Request access from Crayonics
               </Button>
             </CardFooter>
           </Card>
